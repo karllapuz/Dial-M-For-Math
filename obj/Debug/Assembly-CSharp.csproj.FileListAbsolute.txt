@@ -1,0 +1,2 @@
+/Users/karl/Documents/Unity/2DGames/Dial M for Math/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+/Users/karl/Documents/Unity/2DGames/Dial M for Math/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
