@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpinningDial : MonoBehaviour {
 
     public GameManager game;
+    public int speed = 200;
 
-    int speed = 200;
     float lastRotation = 0;
     float rotationSpeed;
     float direction;
@@ -31,22 +31,20 @@ public class SpinningDial : MonoBehaviour {
                 rotatingLeft = !rotatingLeft;
 
                 game.scoreUp();
-                game.newColors();
+                game.newRound();
             }
             else {
+                game.scoreDown();
                 game.wrong();
-                Debug.Log("Wrong answer");
             }
         }
 
         if (rotatingLeft)
         {
-            Debug.Log("rotating left");
             direction = lastRotation - rotationSpeed;
         }
         else
         {
-            Debug.Log("rotating right");
             direction = lastRotation + rotationSpeed;
         }
 
