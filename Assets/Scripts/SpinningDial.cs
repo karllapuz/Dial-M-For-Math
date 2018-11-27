@@ -6,7 +6,7 @@ public class SpinningDial : MonoBehaviour {
 
     public GameManager game;
 
-    int speed = 100;
+    int speed = 200;
     float lastRotation = 0;
     float rotationSpeed;
     float direction;
@@ -25,23 +25,31 @@ public class SpinningDial : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (game.isCorrect())
             {
+                game.correct();
                 lastRotation = transform.rotation.z;
-                if (rotatingLeft)
-                {
-                    direction = lastRotation - rotationSpeed;
-                }
-                else
-                {
-                    direction = lastRotation + rotationSpeed;
-                }
+
                 rotatingLeft = !rotatingLeft;
+
                 game.scoreUp();
                 game.newColors();
             }
             else {
+                game.wrong();
                 Debug.Log("Wrong answer");
             }
         }
+
+        if (rotatingLeft)
+        {
+            Debug.Log("rotating left");
+            direction = lastRotation - rotationSpeed;
+        }
+        else
+        {
+            Debug.Log("rotating right");
+            direction = lastRotation + rotationSpeed;
+        }
+
         transform.Rotate(0, 0, direction);
     }
 }

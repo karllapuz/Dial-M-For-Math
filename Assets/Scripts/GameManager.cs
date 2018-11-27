@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public Text greenText;
     public Text blueText;
 
+    public GameObject answerIndicator;
     public GameObject dial;
     public GameObject color1;
     public GameObject color2;
@@ -55,6 +56,15 @@ public class GameManager : MonoBehaviour {
     public bool isCorrect() {
         return dial.GetComponent<CircleCollider2D>().IsTouching(colors[winningNumber].GetComponent<BoxCollider2D>());
     }
+
+    public void correct() {
+        answerIndicator.GetComponent<SpriteRenderer>().color = new Color32((byte)redValue, (byte)greenValue, (byte)blueValue, 255);
+    }
+
+    public void wrong() {
+        answerIndicator.GetComponent<SpriteRenderer>().color = Color.red;
+    }
+
 
     public void newColors() {
         redValue = Random.Range(0, 255);

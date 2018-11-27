@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39455cffb036c4723b321e5c59ddc905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 0}
+  game: {fileID: 848901498}
 --- !u!4 &396373041
 Transform:
   m_ObjectHideFlags: 0
@@ -848,9 +848,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ead29cd00b54029936624bdb809a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 1100171167}
   redText: {fileID: 459443359}
   greenText: {fileID: 607772120}
   blueText: {fileID: 812036136}
+  answerIndicator: {fileID: 654321746}
   dial: {fileID: 792983746}
   color1: {fileID: 574041664}
   color2: {fileID: 1838674856}
@@ -1066,10 +1068,10 @@ RectTransform:
   m_Father: {fileID: 1956908302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -362, y: 220}
-  m_SizeDelta: {x: 160, y: 48.6}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -24.300003}
+  m_SizeDelta: {x: 160, y: 48.600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1100171167
 MonoBehaviour:
@@ -1845,7 +1847,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
