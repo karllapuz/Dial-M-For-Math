@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
 
     int score;
 
+    int operandChooser;
     int first;
     int second;
     int answer;
@@ -60,7 +61,8 @@ public class GameManager : MonoBehaviour {
         hardMax = 50;
         hardMulDivMax = 10;
 
-        operands = new char[] { '+', '-', 'x', '÷' };
+        operandChooser = 2;
+        operands = new char[] { '+', '-', 'x', '/' };
         max = 10;
         mulDivMax = 5;
 
@@ -92,14 +94,17 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (score > mediumQuestions + easyQuestions) {
+        if (score > mediumQuestions + easyQuestions)
+        {
             max = hardMax;
             mulDivMax = hardMulDivMax;
         }
-        else if (score > easyQuestions) {
+        else if (score > easyQuestions)
+        {
             max = mediumMax;
             mulDivMax = mediumMulDivMax;
         }
+        else if (score > 5) operandChooser = 4;
 	}
 
     public bool isCorrect() {
@@ -117,9 +122,7 @@ public class GameManager : MonoBehaviour {
 
     public void newRound() {
 
-        int operandIndex = Random.Range(0, 4);
-        Debug.Log(operandIndex);
-        Debug.Log("Operand is: " + operands[operandIndex]);
+        int operandIndex = Random.Range(0, operandChooser);
         operand = operands[operandIndex];
         int rangeMax = 0;
         switch (operand) {
@@ -141,9 +144,9 @@ public class GameManager : MonoBehaviour {
                 answer = first * second;
                 rangeMax = (mulDivMax * mulDivMax) + 1;
                 break;
-            case '÷':
-                second = Random.Range(1, mulDivMax);
-                answer = Random.Range(1, mulDivMax * 3);
+            case '/':
+                second = Random.Range(2, mulDivMax);
+                answer = Random.Range(3, mulDivMax * 3);
                 first = answer * second;
                 rangeMax = (mulDivMax * 3) + 1;
                 break;
