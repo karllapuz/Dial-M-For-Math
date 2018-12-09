@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpinningDial : MonoBehaviour {
 
+    public TimeManager timeObj;
     public GameManager game;
     public int speed = 200;
 
@@ -12,9 +13,13 @@ public class SpinningDial : MonoBehaviour {
     float direction;
     bool rotatingLeft = true;
 
+    public AudioSource audioManager;
+    public AudioClip wrong;
+    public AudioClip correct;
+
     // Use this for initialization
     void Start () {
-    
+
         transform.Rotate(0, 0, direction);
     }
 	
@@ -22,9 +27,10 @@ public class SpinningDial : MonoBehaviour {
 	void Update () {
         rotationSpeed = speed * Time.deltaTime;
         direction = lastRotation + rotationSpeed;
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && !game.gameIsOver) {
             if (game.isCorrect())
             {
+                timeObj.time = timeObj.maxTime;
                 game.correct();
                 lastRotation = transform.rotation.z;
 
@@ -32,10 +38,14 @@ public class SpinningDial : MonoBehaviour {
 
                 game.scoreUp();
                 game.newRound();
+
+                audioManager.PlayOneShot(correct);
             }
             else {
+                timeObj.time--;
                 game.scoreDown();
                 game.wrong();
+                audioManager.PlayOneShot(wrong);
             }
         }
 
@@ -48,6 +58,6 @@ public class SpinningDial : MonoBehaviour {
             direction = lastRotation + rotationSpeed;
         }
 
-        transform.Rotate(0, 0, direction);
+        if (!game.gameIsOver) transform.Rotate(0, 0, direction);
     }
 }

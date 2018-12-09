@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public int easyQuestions;
-    public int mediumMax;
-    public int mediumMulDivMax;
-    public int mediumQuestions;
-    public int hardMax;
-    public int hardMulDivMax;
+    public int easyQuestions = 10;
+    public int mediumMax = 30;
+    public int mediumMulDivMax = 7;
+    public int mediumQuestions = 10;
+    public int hardMax = 50;
+    public int hardMulDivMax = 10;
 
     public Text scoreText;
     public Text formula;
+    public GameObject gameOverText;
+    public bool gameIsOver;
 
     public GameObject answerIndicator;
     public GameObject dial;
@@ -37,6 +39,9 @@ public class GameManager : MonoBehaviour {
     public Text answer8;
     List<Text> answers;
 
+    public AudioSource audioManager;
+    public AudioClip gameOverClip;
+
     int winningNumber;
 
     int score;
@@ -45,29 +50,14 @@ public class GameManager : MonoBehaviour {
     int first;
     int second;
     int answer;
-    char[] operands;
+    char[] operands = new char[] { '+', '-', 'x', '/' };
     char operand;
-    int max;
-    int mulDivMax;
+    int max = 10;
+    int mulDivMax = 5;
 
 
 	// Use this for initialization
 	void Start () {
-
-        easyQuestions = 10;
-        mediumMax = 30;
-        mediumMulDivMax = 7;
-        mediumQuestions = 10;
-        hardMax = 50;
-        hardMulDivMax = 10;
-
-        operandChooser = 2;
-        operands = new char[] { '+', '-', 'x', '/' };
-        max = 10;
-        mulDivMax = 5;
-
-        score = 0;
-        scoreText.text = (" " + score);
 
         colors = new List<GameObject>();
         colors.Add(color1);
@@ -89,7 +79,23 @@ public class GameManager : MonoBehaviour {
         answers.Add(answer7);
         answers.Add(answer8);
 
+        RestartGame();
+    }
+
+    void RestartGame() {
+
+        max = 10;
+        mulDivMax = 5;
+        operandChooser = 2;
+        score = 0;
+        scoreText.text = (" " + score);
+        answerIndicator.GetComponent<SpriteRenderer>().color = Color.white;
+
+        gameOverText.SetActive(false);
+        gameIsOver = false;
+
         newRound();
+
     }
 	
 	// Update is called once per frame
@@ -105,18 +111,20 @@ public class GameManager : MonoBehaviour {
             mulDivMax = mediumMulDivMax;
         }
         else if (score > 5) operandChooser = 4;
-	}
+
+        if (gameIsOver && Input.GetKeyDown(KeyCode.Space)) RestartGame();
+    }
 
     public bool isCorrect() {
         return dial.GetComponent<CircleCollider2D>().IsTouching(colors[winningNumber].GetComponent<BoxCollider2D>());
     }
 
     public void correct() {
-        answerIndicator.GetComponent<SpriteRenderer>().color = Color.green;
+        answerIndicator.GetComponent<SpriteRenderer>().color = new Color32(33, 154, 54, 255);
     }
 
     public void wrong() {
-        answerIndicator.GetComponent<SpriteRenderer>().color = Color.red;
+        answerIndicator.GetComponent<SpriteRenderer>().color = new Color32(227, 27, 38, 255);
     }
 
 
@@ -125,6 +133,7 @@ public class GameManager : MonoBehaviour {
         int operandIndex = Random.Range(0, operandChooser);
         operand = operands[operandIndex];
         int rangeMax = 0;
+        int rangeMin = 0;
         switch (operand) {
             case '+':
                 first = Random.Range(1, max);
@@ -137,6 +146,7 @@ public class GameManager : MonoBehaviour {
                 second = Random.Range(1, max);
                 answer = first - second;
                 rangeMax = max + 1;
+                if (answer < 0) rangeMin = answer - 5;
                 break;
             case 'x':
                 first = Random.Range(1, mulDivMax);
@@ -162,9 +172,9 @@ public class GameManager : MonoBehaviour {
 
         for (int i = 0; i < colors.Count; i++)
         {
-            colors[i].GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 4f), Random.Range(0f, 0.4f), Random.Range(0f, 0.4f));
-            int otherIntAnswer = Random.Range(0, rangeMax);
-            while (!intAnswers.Add(otherIntAnswer)) otherIntAnswer = Random.Range(0, rangeMax);
+            colors[i].GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.8f, 1f), Random.Range(0.1f, 0.4f), Random.Range(0.1f, 0.4f));
+            int otherIntAnswer = Random.Range(rangeMin, rangeMax);
+            while (!intAnswers.Add(otherIntAnswer)) otherIntAnswer = Random.Range(rangeMin, rangeMax);
             answers[i].text = otherIntAnswer.ToString();
         }
         winningNumber = Random.Range(1, 8);
@@ -183,6 +193,13 @@ public class GameManager : MonoBehaviour {
             score--;
             scoreText.text = (" " + score);
         }
+    }
+
+    public void gameOver() {
+        gameOverText.SetActive(true);
+        gameIsOver = true;
+
+        audioManager.PlayOneShot(gameOverClip);
     }
 
 }
