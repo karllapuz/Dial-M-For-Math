@@ -1,6 +1,6 @@
 OSXStandalone
 PlayerPath?
-/Users/karl/Desktop/Color Dial (Alpha) for Mac.app
+/Users/karl/Desktop/Dial M for Math (Alpha) for Mac.app
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?
@@ -226,7 +226,7 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-02560eced1d5f8345c338b66dc7da007 Assembly-CSharp.dll:.GameManager
+45d353f9fd893ed0e1622e12f077727d Assembly-CSharp.dll:.GameManager
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
@@ -297,4 +297,4 @@ aa5e3523afd7fd907d3f99da4b777fdc Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 c8a41ce4eea7677f6dd2aa0e422a2f04 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 c31ff9acb65f7a15b5c6fd77c3314d83 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 486cd95c82d8305219c352c06b776e1f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
-43bc352baecdfdba21e683a121ef4b8f Assembly-CSharp.dll:.SpinningDial
+4fcec875433aedb046053a64a84042fa Assembly-CSharp.dll:.SpinningDial
