@@ -22,9 +22,9 @@ public class TimeManager : MonoBehaviour {
         time = maxTime;
         difference = outer.transform.localScale.x - inner.transform.localScale.x;
         baseColor = outer.GetComponent<SpriteRenderer>().color;
-        differenceColorRED = 227 - outer.GetComponent<SpriteRenderer>().color.r;
-        differenceColorGREEN = 27 - outer.GetComponent<SpriteRenderer>().color.g;
-        differenceColorBLUE = 38 - outer.GetComponent<SpriteRenderer>().color.b;
+        differenceColorRED = 33 - outer.GetComponent<SpriteRenderer>().color.r;
+        differenceColorGREEN = 154 - outer.GetComponent<SpriteRenderer>().color.g;
+        differenceColorBLUE = 54 - outer.GetComponent<SpriteRenderer>().color.b;
     }
 	
 	// Update is called once per frame
@@ -33,8 +33,7 @@ public class TimeManager : MonoBehaviour {
             time -= Time.deltaTime;
             float baseScale = inner.transform.localScale.x;
             outer.transform.localScale = new Vector3(baseScale + (time / maxTime) * difference, baseScale + (time / maxTime) * difference, baseScale + (time / maxTime) * difference);
-            outer.GetComponent<SpriteRenderer>().color = new Color(227 - (time / maxTime) * differenceColorRED, 27 - (time / maxTime) * differenceColorGREEN, 38 - (time / maxTime) * differenceColorBLUE);
-            Debug.Log(new Color(227 - (time / maxTime) * differenceColorRED, 27 - (time / maxTime) * differenceColorGREEN, 38 - (time / maxTime) * differenceColorBLUE));
+            outer.GetComponent<SpriteRenderer>().color = new Color(33 - (time / maxTime) * differenceColorRED, 154 - (time / maxTime) * differenceColorGREEN, 54 - (time / maxTime) * differenceColorBLUE);
             if (time < 0)
             {
                 time = maxTime;

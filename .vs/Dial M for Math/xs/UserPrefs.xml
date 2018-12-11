@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{B8405519-5491-B74A-6AEA-099B03618E05}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TimeManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/SpinningDial.cs" Line="37" Column="34" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="125" Column="60" />
-      <File FileName="Assets/Scripts/TimeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpinningDial.cs" Line="12" Column="25" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="97" Column="18" />
+      <File FileName="Assets/Scripts/TimeManager.cs" Line="36" Column="161" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

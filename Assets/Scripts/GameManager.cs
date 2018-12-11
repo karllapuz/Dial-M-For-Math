@@ -6,15 +6,18 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public int easyQuestions = 10;
+    public int mediumMin = 10;
     public int mediumMax = 30;
     public int mediumMulDivMax = 7;
     public int mediumQuestions = 10;
+    public int hardMin = 30;
     public int hardMax = 50;
-    public int hardMulDivMax = 10;
+    public int hardMulDivMax = 12;
 
     public Text scoreText;
     public Text formula;
     public GameObject gameOverText;
+    public GameObject starterText;
     public bool gameIsOver;
 
     public GameObject answerIndicator;
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour {
     char[] operands = new char[] { '+', '-', 'x', '/' };
     char operand;
     int max = 10;
+    int min = 1;
     int mulDivMax = 5;
 
 
@@ -79,18 +83,26 @@ public class GameManager : MonoBehaviour {
         answers.Add(answer7);
         answers.Add(answer8);
 
-        RestartGame();
+        Starter();
+    }
+
+    void Starter() {
+        gameOverText.SetActive(false);
+        starterText.SetActive(true);
+        gameIsOver = true;
     }
 
     void RestartGame() {
 
         max = 10;
+        min = 1;
         mulDivMax = 5;
         operandChooser = 2;
         score = 0;
         scoreText.text = (" " + score);
         answerIndicator.GetComponent<SpriteRenderer>().color = Color.white;
 
+        starterText.SetActive(false);
         gameOverText.SetActive(false);
         gameIsOver = false;
 
@@ -103,11 +115,13 @@ public class GameManager : MonoBehaviour {
         if (score > mediumQuestions + easyQuestions)
         {
             max = hardMax;
+            min = hardMin;
             mulDivMax = hardMulDivMax;
         }
         else if (score > easyQuestions)
         {
             max = mediumMax;
+            min = mediumMin;
             mulDivMax = mediumMulDivMax;
         }
         else if (score > 5) operandChooser = 4;
@@ -136,14 +150,14 @@ public class GameManager : MonoBehaviour {
         int rangeMin = 0;
         switch (operand) {
             case '+':
-                first = Random.Range(1, max);
-                second = Random.Range(1, max);
+                first = Random.Range(min, max);
+                second = Random.Range(min, max);
                 answer = first + second;
                 rangeMax = max + max + 1;
                 break;
             case '-':
-                first = Random.Range(1, max);
-                second = Random.Range(1, max);
+                first = Random.Range(min, max);
+                second = Random.Range(min, max);
                 answer = first - second;
                 rangeMax = max + 1;
                 if (answer < 0) rangeMin = answer - 5;
